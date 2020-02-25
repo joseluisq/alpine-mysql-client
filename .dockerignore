@@ -1,0 +1,13 @@
+*.~
+.git
+**/*.gz
+**/*.log
+**/*.tar
+**/*.zip
+**/*.gzip
+**/*.sql
+**/.DS_Store
+**/test*
+.gitignore
+*docker-compose*
+Makefile
