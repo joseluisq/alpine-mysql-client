@@ -3,14 +3,14 @@ run:
 .PHONY: run
 
 build:
-	@docker build -t mysql-tools:latest .
+	@docker build -t alpine-mysql-client:latest .
 .PHONY: build
 
 exec:
 	@docker run --rm -it \
-		--name mysql-tools \
+		--name alpine-mysql-client \
 		--volume $(PWD):/root/sample \
 		--workdir /root/sample \
-			mysql-tools \
+			alpine-mysql-client:latest \
 			mysql_exporter .env
 .PHONY: exec

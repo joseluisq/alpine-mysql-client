@@ -5,7 +5,7 @@ LABEL maintainer="Jose Quintana <git.io/joseluisq>"
 ENV BUILD_DEPS="gettext"  \
     RUNTIME_DEPS="libintl"
 
-RUN apk --no-cache add ca-certificates tzdata mysql-client nano
+RUN apk --no-cache add ca-certificates tzdata mysql-client nano dumb-init
 RUN set -ex; \
     apkArch="$(apk --print-arch)"; \
     case "$apkArch" in \
@@ -24,3 +24,8 @@ COPY ./__mysqldump.sh /usr/local/bin/__mysqldump.sh
 COPY ./mysql_exporter /usr/local/bin/mysql_exporter
 RUN chmod +x /usr/local/bin/__mysqldump.sh && \
     chmod +x /usr/local/bin/mysql_exporter
+
+EXPOSE  3306
+
+ENTRYPOINT [ "/usr/bin/dumb-init" ]
+CMD [ "mysql" ]

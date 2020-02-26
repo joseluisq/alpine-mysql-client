@@ -1,8 +1,10 @@
-# MySQL Tools
+# Alpine / MySQL Client
 
-> MySQL client tools on Alpine image.
+> [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) tools on top of [Alpine Linux x86_64](https://hub.docker.com/_/alpine).
 
-## MySQL Client Tools
+**Note:** [MySQL client (mariadb-client)](https://pkgs.alpinelinux.org/package/v3.11/main/x86_64/mysql-client) is an alias package for [mysql-client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) migration tools.
+
+## MySQL Client programs
 
 ```sh
 mysql
@@ -19,9 +21,23 @@ mysqldumpslow
 mysqlshow
 ```
 
-## Setup
+**Note:** For more details take a look at:
 
-Setup is made using via `.env` files.
+- [MariaDB 10 - Clients & Utilities](https://mariadb.com/kb/en/clients-utilities/)
+- [MySQL 8 - Client Programs](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html)
+
+## Additional Tools
+
+This image comes with some additional tools:
+
+### Exporter
+
+`mysql_exporter` is a custom tool which exports a database script using `mysqldump`. Additionally it support gzip compression.
+It can be configured via a `.env` file.
+
+#### Setup via environment variables
+
+Setup can be done using a `.env` file.
 
 ```env
 DB_PROTOCOL=TCP
@@ -36,18 +52,18 @@ DB_PASSWORD=""
 DB_ARGS=
 ```
 
-## Usage
+**Notes: **
 
-### Exporter
+- `DB_EXPORT_GZIP=true`: Compress the sql file using Gzip (optional)
 
-`mysql_exporter` is a custom tool in order to export a database which supports `.env` files.
+#### Export database using a Docker container
 
 ```sh
-@docker run --rm -it \
-    --name mysql-tools \
+docker run --rm -it \
+    --name joseluisq/alpine-mysql-client \
     --volume $(PWD):/root/sample \
     --workdir /root/sample \
-    mysql-tools \
+    joseluisq/alpine-mysql-client \
     mysql_exporter .env
 ```
 
