@@ -1,10 +1,14 @@
-# Alpine / MySQL Client 
+# Alpine / MySQL Client
+
+[![dockeri.co](https://dockeri.co/image/joseluisq/alpine-mysql-client)](https://hub.docker.com/r/joseluisq/alpine-mysql-client)
 
 > [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) tools on top of [Alpine Linux x86_64](https://hub.docker.com/_/alpine).
 
-**Note:** [MySQL client (mariadb-client)](https://pkgs.alpinelinux.org/package/v3.11/main/x86_64/mysql-client) is an alias package for [mysql-client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) migration tools.
+🐳 View on [Docker Hub](https://hub.docker.com/r/joseluisq/alpine-mysql-client/)
 
 ## MySQL Client programs
+
+**Note:** [MySQL client (mariadb-client)](https://pkgs.alpinelinux.org/package/v3.11/main/x86_64/mysql-client) is an alias package for [mysql-client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) migration tools.
 
 ```sh
 mysql
