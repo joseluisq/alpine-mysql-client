@@ -5,8 +5,8 @@ set -e
 FILE_ENV=$1
 
 if [ -z "$FILE_ENV" ]; then
-    echo 'A .env file is required as argument'
-    exit 1
+    __mysqldump.sh
+    exit 0
 fi
 
 if [ -f $FILE_ENV ]; then

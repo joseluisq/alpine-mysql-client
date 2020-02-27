@@ -1,0 +1,18 @@
+version: "3.3"
+
+services:
+  exporter:
+    image: alpine-mysql-client:latest
+    
+    # Uses on development
+    env_file: .env
+
+    # Or uses on production
+    # environment:
+
+    command: mysql_exporter
+    working_dir: /home/mysql/sample
+    volumes:
+      - ./:/home/mysql/sample
+    networks:
+      - default

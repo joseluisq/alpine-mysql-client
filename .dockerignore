@@ -11,3 +11,4 @@
 .gitignore
 *docker-compose*
 Makefile
+*.md

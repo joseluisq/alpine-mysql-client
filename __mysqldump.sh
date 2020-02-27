@@ -31,8 +31,8 @@ MYEXPORT="\
 --password=\"$DB_PASSWORD\" \
 $DB_ARGS $DB_NAME $XDB_EXPORT"
 
-echo "MySQL Tools - Exporter"
-echo "======================="
+echo "Alpine / MySQL Client - Exporter"
+echo "================================"
 
 mysqldump --version
 
@@ -40,5 +40,5 @@ echo "Exporting database \`$DB_NAME\` to \`$XDB_EXPORT_FILE\` file..."
 
 eval mysqldump $MYEXPORT
 
-echo "Database \`$DB_NAME\` were exported successfully!"
+echo "Database \`$DB_NAME\` was exported successfully!"
 du -sh $XDB_EXPORT_FILE
