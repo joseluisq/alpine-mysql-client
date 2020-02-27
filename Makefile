@@ -13,15 +13,13 @@ exec:
 .PHONY: exec
 
 release:
-	# 1. Get latest git tag
-	$(eval GIT_TAG := $(shell git tag -l --contains HEAD))
-
 	# 2. Update docker files to latest tag
-	./docker/version.sh $(GIT_TAG)
+	./docker/version.sh $(ARGS)
 
 	# 3. Commit and push to latest tag
 	git add docker/Dockerfile
-	git commit docker/Dockerfile -m "$(GIT_TAG)"
+	git commit docker/Dockerfile -m "$(ARGS)"
+	git tag $(ARGS)
 	git push origin master
-	git push origin $(GIT_TAG)
+	git push origin $(ARGS)
 .ONESHELL: release
