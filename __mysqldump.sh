@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -e
-
 START=`date +%s`
 
 XDB_PROTO="$DB_PROTOCOL"
@@ -54,13 +52,13 @@ else
 fi
 
 OUTPUT=$(eval mysqldump ${CMD} 2>&1)
+exitcode=$?
 
-END=`date +%s`
-RUNTIME=$((END-START))
+if [[ $exitcode != 0 ]]; then echo $OUTPUT; exit $exitcode; fi
 
 # Note: Ugly workaround here because `mysqldump` (unlike `mysql`) doesn't emit a proper exit code even in MySQL v8
 # See https://bugs.mysql.com/bug.php?id=90538
-if echo $OUTPUT | grep -qE '(.*)mysqldump: Got error:(.*)'; then
+if echo $OUTPUT | grep -qE '(.*)(mysqldump: Got error:|: eval:)(.*)'; then
     echo $OUTPUT
     exit 1
 fi
@@ -68,6 +66,9 @@ fi
 if [[ ! -z "$OUTPUT" ]]; then echo $OUTPUT; fi;
 
 FILE_SIZE=$(du -sh $XDB_EXPORT_FILE | cut -f1)
+
+END=`date +%s`
+RUNTIME=$((END-START))
 
 echo "Database \`$DB_NAME\` was exported on ${RUNTIME}s successfully!"
 
