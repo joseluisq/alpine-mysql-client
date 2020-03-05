@@ -7,4 +7,7 @@
 **/*.tar
 **/*.sql
 **/.DS_Store
-.env
+*.env
+
+!mysql_exporter.env
+!mysql_importer.env

@@ -32,6 +32,8 @@ RUN adduser -h ${USER_HOME_DIR} -s /sbin/nologin -u 1000 -D ${USER_NAME} && \
 
 COPY ./__mysqldump.sh /usr/local/bin/__mysqldump.sh
 COPY ./mysql_exporter /usr/local/bin/mysql_exporter
+COPY ./__mysqlimport.sh /usr/local/bin/__mysqlimport.sh
+COPY ./mysql_importer /usr/local/bin/mysql_importer
 
 RUN chmod +x /usr/local/bin/__mysqldump.sh && \
     chmod +x /usr/local/bin/mysql_exporter

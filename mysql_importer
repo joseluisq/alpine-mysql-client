@@ -1,0 +1,19 @@
+#!/bin/sh
+
+set -e
+
+FILE_ENV=$1
+
+if [ -z "$FILE_ENV" ]; then
+    __mysqlimport.sh
+    exit 0
+fi
+
+if [ -f $FILE_ENV ]; then
+    export $(cat $FILE_ENV | xargs)
+
+    __mysqlimport.sh
+else
+    echo "file \`$FILE_ENV\` was not found"
+    exit 1
+fi

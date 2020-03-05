@@ -2,15 +2,25 @@ build:
 	@docker build -t alpine-mysql-client:latest -f docker/Dockerfile .
 .PHONY: build
 
-exec:
+export:
 	@docker run --rm -it \
 		--user mysql \
 		--name alpine-mysql-client \
 		--volume $(PWD):/home/mysql/sample \
 		--workdir /home/mysql/sample \
 			alpine-mysql-client:latest \
-			mysql_exporter .env
-.PHONY: exec
+			mysql_exporter export.env
+.PHONY: export
+
+import:
+	@docker run --rm -it \
+		--user mysql \
+		--name alpine-mysql-client \
+		--volume $(PWD):/home/mysql/sample \
+		--workdir /home/mysql/sample \
+			alpine-mysql-client:latest \
+			mysql_importer import.env
+.PHONY: import
 
 release:
 	# 2. Update docker files to latest tag
