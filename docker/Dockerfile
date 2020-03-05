@@ -36,7 +36,9 @@ COPY ./__mysqlimport.sh /usr/local/bin/__mysqlimport.sh
 COPY ./mysql_importer /usr/local/bin/mysql_importer
 
 RUN chmod +x /usr/local/bin/__mysqldump.sh && \
-    chmod +x /usr/local/bin/mysql_exporter
+    chmod +x /usr/local/bin/__mysqlimport.sh && \
+    chmod +x /usr/local/bin/mysql_exporter && \
+    chmod +x /usr/local/bin/mysql_importer
 
 USER ${USER_NAME}
 WORKDIR ${USER_HOME_DIR}
@@ -51,5 +53,5 @@ LABEL org.opencontainers.image.vendor="Jose Quintana" \
     org.opencontainers.image.url="https://github.com/joseluisq/alpine-mysql-client" \
     org.opencontainers.image.title="Alpine / MySQL Client" \
     org.opencontainers.image.description="MySQL client tools on top of Alpine Linux x86_64." \
-    org.opencontainers.image.version="v1.0.0" \
+    org.opencontainers.image.version="v1.1.0" \
     org.opencontainers.image.documentation="https://github.com/joseluisq/alpine-mysql-client/blob/master/README.md"
