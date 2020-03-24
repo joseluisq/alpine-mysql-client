@@ -28,7 +28,11 @@ RUN adduser -h ${USER_HOME_DIR} -s /sbin/nologin -u 1000 -D ${USER_NAME} && \
     apk add --virtual build_deps $BUILD_DEPS && \
     \
     cp /usr/bin/envsubst /usr/local/bin/envsubst && \
-    apk del build_deps
+    apk del build_deps && \
+    wget --quiet -O /tmp/fenv.tar.gz "https://github.com/joseluisq/fenv/releases/download/v1.0.0/fenv_1.0.0_linux_$arch.tar.gz"; \
+	tar xzvf /tmp/fenv.tar.gz -C /usr/local/bin fenv; \
+	rm -f /tmp/fenv.tar.gz; \
+	chmod +x /usr/local/bin/fenv
 
 COPY ./__mysqldump.sh /usr/local/bin/__mysqldump.sh
 COPY ./mysql_exporter /usr/local/bin/mysql_exporter
