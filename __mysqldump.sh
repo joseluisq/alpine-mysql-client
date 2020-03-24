@@ -29,13 +29,15 @@ else
     XDB_EXPORT="> $XDB_EXPORT_FILE"
 fi
 
+DB_PASSWORD=$(echo -n $DB_PASSWORD | sed 's/"/\\"/g')
+
 CMD="\
 --protocol=$XDB_PROTO \
 --host=$XDB_HOST \
 --port=$XDB_PORT \
 --default-character-set=$XDB_DEFAULT_CHARACTER_SET \
 --user=$DB_USERNAME \
---password=\"$DB_PASSWORD\" \
+--password="\"$DB_PASSWORD"\" \
 $DB_ARGS $DB_NAME $XDB_EXPORT"
 
 echo "Alpine / MySQL Client - Exporter"
