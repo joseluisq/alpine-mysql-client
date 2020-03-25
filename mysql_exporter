@@ -10,7 +10,7 @@ if [[ -z "$FILE_ENV" ]]; then
 fi
 
 if [[ -f $FILE_ENV ]]; then
-    fenv -f $FILE_ENV __mysqldump.sh
+    enve -f $FILE_ENV __mysqldump.sh
 else
     echo "file \`$FILE_ENV\` was not found"
     exit 1

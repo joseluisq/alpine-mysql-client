@@ -1,8 +1,6 @@
-# Alpine / MySQL Client
+# Alpine / MySQL Client ![Docker Pulls](https://img.shields.io/docker/pulls/joseluisq/alpine-mysql-client)
 
-[![dockeri.co](https://dockeri.co/image/joseluisq/alpine-mysql-client)](https://hub.docker.com/r/joseluisq/alpine-mysql-client)
-
-> [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) tools on top of [Alpine Linux x86_64](https://hub.docker.com/_/alpine).
+> [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) for easy export and import databases using Docker.
 
 🐳 View on [Docker Hub](https://hub.docker.com/r/joseluisq/alpine-mysql-client/)
 
