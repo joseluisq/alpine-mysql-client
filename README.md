@@ -1,12 +1,12 @@
-# Alpine / MySQL Client ![Docker Pulls](https://img.shields.io/docker/pulls/joseluisq/alpine-mysql-client)
+# Docker MySQL Client ![Docker Image Size](https://img.shields.io/docker/image-size/joseluisq/static-web-server/2) ![Docker Image Version](https://img.shields.io/docker/v/joseluisq/static-web-server/2) ![Docker Pulls](https://img.shields.io/docker/pulls/joseluisq/alpine-mysql-client.svg)
 
-> [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) for easy export and import databases using Docker.
+> [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) for easy **export** and **import** databases using Docker.
 
-🐳 View on [Docker Hub](https://hub.docker.com/r/joseluisq/alpine-mysql-client/)
+🐳  View on [Docker Hub](https://hub.docker.com/r/joseluisq/alpine-mysql-client/)
 
 ## MySQL Client programs
 
-**Note:** [MySQL client (mariadb-client)](https://pkgs.alpinelinux.org/package/v3.11/main/x86_64/mysql-client) is an alias package for [mysql-client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) migration tools.
+**NOTE:** [MySQL client (mariadb-client)](https://pkgs.alpinelinux.org/package/v3.11/main/x86_64/mysql-client) is an alias package for [mysql-client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) migration tools.
 
 ```sh
 mysql
@@ -25,7 +25,7 @@ mysqlshow
 
 For more details check it out:
 
-- [MariaDB 10 - Clients & Utilities](https://mariadb.com/kb/en/clients-utilities/)
+- [MariaDB 10 - Clients and Utilities](https://mariadb.com/kb/en/clients-utilities/)
 - [MySQL 8 - Client Programs](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html)
 
 ## User privileges
@@ -181,4 +181,4 @@ Feel free to send a [pull request](https://github.com/joseluisq/alpine-mysql-cli
 
 MIT license
 
-© 2020 [Jose Quintana](https://git.io/joseluisq)
+© 2020-present [Jose Quintana](https://git.io/joseluisq)
