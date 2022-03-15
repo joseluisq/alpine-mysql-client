@@ -1,6 +1,10 @@
-# Alpine MySQL Client ![Docker Image Size](https://img.shields.io/docker/image-size/joseluisq/alpine-mysql-client/1) ![Docker Image Version](https://img.shields.io/docker/v/joseluisq/alpine-mysql-client/1) ![Docker Pulls](https://img.shields.io/docker/pulls/joseluisq/alpine-mysql-client.svg)
+# Alpine MySQL Client
+
+[![devel](https://github.com/joseluisq/alpine-mysql-client/actions/workflows/devel.yml/badge.svg)](https://github.com/joseluisq/alpine-mysql-client/actions/workflows/devel.yml) ![Docker Image Size](https://img.shields.io/docker/image-size/joseluisq/alpine-mysql-client/1) ![Docker Image Version](https://img.shields.io/docker/v/joseluisq/alpine-mysql-client/1) ![Docker Pulls](https://img.shields.io/docker/pulls/joseluisq/alpine-mysql-client.svg)
 
 > [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) for easy **export** and **import** databases using Docker.
+
+If uou are looking for MySQL 8 Client then go to [Docker MySQL 8 Client](https://github.com/joseluisq/alpine-mysql-client)
 
 🐳  View on [Docker Hub](https://hub.docker.com/r/joseluisq/alpine-mysql-client/)
 
@@ -27,6 +31,13 @@ For more details check it out:
 
 - [MariaDB 10 - Clients and Utilities](https://mariadb.com/kb/en/clients-utilities/)
 - [MySQL 8 - Client Programs](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html)
+
+## Usage
+
+```sh
+docker run -it --rm joseluisq/alpine-mysql-client mysql --version
+# mysql  Ver 15.1 Distrib 10.6.4-MariaDB, for Linux (x86_64) using readline 5.1
+```
 
 ## User privileges
 
