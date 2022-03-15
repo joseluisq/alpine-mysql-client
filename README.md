@@ -2,15 +2,15 @@
 
 [![devel](https://github.com/joseluisq/alpine-mysql-client/actions/workflows/devel.yml/badge.svg)](https://github.com/joseluisq/alpine-mysql-client/actions/workflows/devel.yml) ![Docker Image Size](https://img.shields.io/docker/image-size/joseluisq/alpine-mysql-client/1) ![Docker Image Version](https://img.shields.io/docker/v/joseluisq/alpine-mysql-client/1) ![Docker Pulls](https://img.shields.io/docker/pulls/joseluisq/alpine-mysql-client.svg)
 
-> [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) for easy **export** and **import** databases using Docker.
+> [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) (MariaDB Client) for easy **export** and **import** databases using Docker.
 
-If uou are looking for MySQL 8 Client then go to [Docker MySQL 8 Client](https://github.com/joseluisq/alpine-mysql-client)
+**Note:** If you are looking for a **MySQL 8 Client** then go to [Docker MySQL 8 Client](https://github.com/joseluisq/alpine-mysql-client) project.
 
 🐳  View on [Docker Hub](https://hub.docker.com/r/joseluisq/alpine-mysql-client/)
 
 ## MySQL Client programs
 
-**NOTE:** [MySQL client (mariadb-client)](https://pkgs.alpinelinux.org/package/v3.11/main/x86_64/mysql-client) is an alias package for [mysql-client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) migration tools.
+**Note:** [MySQL client (mariadb-client)](https://pkgs.alpinelinux.org/package/v3.11/main/x86_64/mysql-client) is an alias package for [mysql-client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) migration tools.
 
 ```sh
 mysql
