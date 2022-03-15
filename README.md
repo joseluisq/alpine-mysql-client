@@ -1,4 +1,4 @@
-# Docker MySQL Client ![Docker Image Size](https://img.shields.io/docker/image-size/joseluisq/static-web-server/2) ![Docker Image Version](https://img.shields.io/docker/v/joseluisq/static-web-server/2) ![Docker Pulls](https://img.shields.io/docker/pulls/joseluisq/alpine-mysql-client.svg)
+# Alpine MySQL Client ![Docker Image Size](https://img.shields.io/docker/image-size/joseluisq/alpine-mysql-client/1) ![Docker Image Version](https://img.shields.io/docker/v/joseluisq/alpine-mysql-client/1) ![Docker Pulls](https://img.shields.io/docker/pulls/joseluisq/alpine-mysql-client.svg)
 
 > [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) for easy **export** and **import** databases using Docker.
 
@@ -82,6 +82,7 @@ The following Docker commands create a container in order to export a database a
 
 ```sh
 docker run --rm -it \
+    --user $(id -u $USER):$(id -g $USER) \
     --volume $PWD:/home/mysql/sample \
     --workdir /home/mysql/sample \
         joseluisq/alpine-mysql-client:1 \
@@ -160,6 +161,7 @@ The following Docker commands create a container in order to import a SQL script
 
 ```sh
 docker run --rm -it \
+    --user $(id -u $USER):$(id -g $USER) \
     --volume $PWD:/home/mysql/sample \
     --workdir /home/mysql/sample \
         joseluisq/alpine-mysql-client:1 \
