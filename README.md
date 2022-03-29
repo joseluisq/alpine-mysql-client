@@ -4,7 +4,7 @@
 
 > [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) (MariaDB Client) for easy **export** and **import** databases using Docker.
 
-**Note:** If you are looking for a **MySQL 8 Client** then go to [Docker MySQL 8 Client](https://github.com/joseluisq/alpine-mysql-client) project.
+_**Note:** If you are looking for a **MySQL 8 Client** then go to [Docker MySQL 8 Client](https://github.com/joseluisq/docker-mysql-client) project._
 
 🐳  View on [Docker Hub](https://hub.docker.com/r/joseluisq/alpine-mysql-client/)
 
