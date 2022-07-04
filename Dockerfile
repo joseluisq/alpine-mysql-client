@@ -1,4 +1,28 @@
-FROM alpine:3.15
+FROM --platform=$BUILDPLATFORM alpine:3.16 as build
+
+ARG TARGETPLATFORM
+ARG VERSION=0.0.0
+ENV VERSION=${VERSION}
+ARG ENVE_VERSION=1.4.0
+
+RUN apk --no-cache add ca-certificates tzdata
+RUN set -ex; \
+    case "$TARGETPLATFORM" in \
+        "linux/amd64") target='amd64' ;; \
+        "linux/arm64") target='arm64' ;; \
+        "linux/386") target='i386' ;; \
+        "linux/arm/v7") target='armv7' ;; \
+        "linux/arm/v6") target='armv6' ;; \
+        *) echo >&2 "error: unsupported $TARGETPLATFORM architecture"; exit 1 ;; \
+    esac; \
+    wget --quiet -O /tmp/enve.tar.gz \
+        "https://github.com/joseluisq/enve/releases/download/v${ENVE_VERSION}/enve_v${ENVE_VERSION}_linux_${target}.tar.gz"; \
+    tar xzvf /tmp/enve.tar.gz -C /usr/local/bin enve; \
+    enve -v; \
+    chmod +x /usr/local/bin/enve; \
+    true
+
+FROM alpine:3.16
 
 ARG VERSION=0.0.0
 ENV VERSION=${VERSION}
@@ -10,7 +34,6 @@ LABEL version="${VERSION}" \
 # Dependencies
 ENV BUILD_DEPS="gettext"
 ENV RUNTIME_DEPS="libintl"
-ARG ENVE_VERSION=1.4.0
 
 # Custom user
 ARG USER_NAME
@@ -26,13 +49,9 @@ RUN set -eux \
     && apk add --virtual build_deps $BUILD_DEPS \
     && cp /usr/bin/envsubst /usr/local/bin/envsubst \
     && apk del build_deps \
-    && wget --quiet -O /tmp/enve.tar.gz \
-        "https://github.com/joseluisq/enve/releases/download/v${ENVE_VERSION}/enve_v${ENVE_VERSION}_linux_amd64.tar.gz" \
-	&& tar xzvf /tmp/enve.tar.gz -C /usr/local/bin enve \
-	&& enve -v \
-	&& rm -rf /tmp/enve.tar.gz \
-	&& chmod +x /usr/local/bin/enve \
     && true
+
+COPY --from=build /usr/local/bin/enve /usr/local/bin/
 
 COPY ./__mysqldump.sh /usr/local/bin/__mysqldump.sh
 COPY ./mysql_exporter /usr/local/bin/mysql_exporter
@@ -40,6 +59,7 @@ COPY ./__mysqlimport.sh /usr/local/bin/__mysqlimport.sh
 COPY ./mysql_importer /usr/local/bin/mysql_importer
 
 RUN set -eux \
+    && enve -v \
     && chmod +x /usr/local/bin/__mysqldump.sh \
     && chmod +x /usr/local/bin/__mysqlimport.sh \
     && chmod +x /usr/local/bin/mysql_exporter \

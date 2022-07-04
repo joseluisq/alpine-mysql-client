@@ -1,6 +1,9 @@
-build:
-	@docker build -t alpine-mysql-client:latest -f Dockerfile .
-.PHONY: build
+buildx:
+	@docker buildx build \
+		--network=host \
+		--build-arg VERSION=0.0.0 \
+		-t alpine-mysql-client:latest -f Dockerfile .
+.PHONY: buildx
 
 export:
 	@docker run --rm -it \
