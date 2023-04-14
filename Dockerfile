@@ -1,9 +1,9 @@
-FROM --platform=$BUILDPLATFORM alpine:3.16 as build
+FROM --platform=$BUILDPLATFORM alpine:3.16.5 as build
 
 ARG TARGETPLATFORM
 ARG VERSION=0.0.0
 ENV VERSION=${VERSION}
-ARG ENVE_VERSION=1.4.0
+ARG ENVE_VERSION=1.4.1
 
 RUN apk --no-cache add ca-certificates tzdata
 RUN set -ex; \
@@ -22,7 +22,7 @@ RUN set -ex; \
     chmod +x /usr/local/bin/enve; \
     true
 
-FROM alpine:3.16
+FROM alpine:3.16.5
 
 ARG VERSION=0.0.0
 ENV VERSION=${VERSION}
