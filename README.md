@@ -43,7 +43,7 @@ docker run -it --rm joseluisq/alpine-mysql-client mysql --version
 
 - Default user (unprivileged) is `mysql`.
 - `mysql` home directory is located at `/home/mysql`.
-- If you want a full privileged user try `root`. E.g append a `--user root` argument to `docker run`.
+- If you want a fully privileged user try `root`. E.g append a `--user root` argument to `docker run`.
 
 ## Additional Tools
 
@@ -51,7 +51,7 @@ This image comes with some additional tools.
 
 ### Exporter
 
-`mysql_exporter` is a custom tool which exports a database script using `mysqldump`. Additionally it support gzip compression.
+`mysql_exporter` is a custom tool that exports a database script using `mysqldump`. Additionally it supports gzip compression.
 It can be configured via environment variables or using `.env` file.
 
 #### Setup via environment variables
@@ -81,15 +81,15 @@ DB_ARGS=
 
 **Notes:**
 
-- `DB_EXPORT_GZIP=true`: Compress the sql file using Gzip (optional). If `false` or not defined then the exported file will be a `.sql` file.
-- `DB_ARGS`: can be used in order to pass more `mysqldump` arguments (optional). 
-- An `.env` example file can be found at [./mysql_exporter.env](./mysql_exporter.env)
+- `DB_EXPORT_GZIP=true`: Compress the SQL file using Gzip (optional). If `false` or not defined then the exported file will be a `.sql` file.
+- `DB_ARGS`: can be used to pass more `mysqldump` arguments (optional). 
+- A `.env` example file can be found at [./mysql_exporter.env](./mysql_exporter.env)
 
 #### Export a database using a Docker container
 
-The following Docker commands create a container in order to export a database and then remove such container automatically.
+The following Docker commands create a container to export a database and then remove such container automatically.
 
-**Note:** `mysql_exporter` supports enviroment variables or a `.env` file passed as argument.
+**Note:** `mysql_exporter` supports environment variables or a `.env` file passed as an argument.
 
 ```sh
 docker run --rm -it \
@@ -112,9 +112,9 @@ __Notes:__
 
 - `--volume $PWD:/home/mysql/sample` specificy a [bind mount directory](https://docs.docker.com/storage/bind-mounts/) from host to container.
 - `$PWD` is just my host working directory. Use your own path.
-- `/home/mysql/` is default home directory user (optional). View [User privileges](#user-privileges) section above.
+- `/home/mysql/` is the default home directory user (optional). View [User privileges](#user-privileges) section above.
 - `/home/mysql/sample` is a container directory that Docker will create for us.
-- `--workdir /home/mysql/sample` specificy the working directory used by default inside the container.
+- `--workdir /home/mysql/sample` specificies the working directory used by default inside the container.
 - `production.env` is a custom env file path with the corresponding environment variables passed as argument. That file shoud available in your host working directory. E.g `$PWD` in my case.
 
 #### Export a database using a Docker Compose file
@@ -166,9 +166,9 @@ DB_ARGS=
 
 #### Import a SQL script via a Docker container
 
-The following Docker commands create a container in order to import a SQL script file to an specific database and removing the container afterwards.
+The following Docker commands create a container to import a SQL script file to a specific database and remove the container afterward.
 
-**Note:** `mysql_importer` supports enviroment variables or a `.env` file passed as argument.
+**Note:** `mysql_importer` supports environment variables or a `.env` file passed as an argument.
 
 ```sh
 docker run --rm -it \
@@ -188,10 +188,10 @@ docker run --rm -it \
 
 ## Contributions
 
-Feel free to send a [pull request](https://github.com/joseluisq/alpine-mysql-client/pulls) or file some [issue](https://github.com/joseluisq/alpine-mysql-client/issues).
+Feel free to send a [pull request](https://github.com/joseluisq/alpine-mysql-client/pulls) or file some [issues](https://github.com/joseluisq/alpine-mysql-client/issues).
 
 ## License
 
 MIT license
 
-© 2020-present [Jose Quintana](https://git.io/joseluisq)
+© 2020-present [Jose Quintana](https://joseluisq.net)
