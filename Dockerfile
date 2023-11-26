@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM alpine:3.17.4 as build
+FROM --platform=$BUILDPLATFORM alpine:3.17.5 as build
 
 ARG TARGETPLATFORM
 ARG VERSION=0.0.0
@@ -22,7 +22,7 @@ RUN set -ex; \
     chmod +x /usr/local/bin/enve; \
     true
 
-FROM alpine:3.17.4
+FROM alpine:3.17.5
 
 ARG VERSION=0.0.0
 ENV VERSION=${VERSION}

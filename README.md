@@ -43,7 +43,7 @@ docker run -it --rm joseluisq/alpine-mysql-client mysql --version
 
 - Default user (unprivileged) is `mysql`.
 - `mysql` home directory is located at `/home/mysql`.
-- If you want a fully privileged user try `root`. E.g append a `--user root` argument to `docker run`.
+- If you want a fully privileged user try `root`. E.g. append a `--user root` argument to `docker run`.
 
 ## Additional Tools
 
@@ -51,7 +51,7 @@ This image comes with some additional tools.
 
 ### Exporter
 
-`mysql_exporter` is a custom tool that exports a database script using `mysqldump`. Additionally it supports gzip compression.
+`mysql_exporter` is a custom tool that exports a database script using `mysqldump`. Additionally, it supports gzip compression.
 It can be configured via environment variables or using `.env` file.
 
 #### Setup via environment variables
@@ -136,7 +136,7 @@ services:
 
 ### Importer
 
-`mysql_importer` is a custom tool which imports a SQL script file (text or Gzip) using `mysql` command.
+`mysql_importer` is a custom tool that imports a SQL script file (text or Gzip) using `mysql` command.
 It can be configured via environment variables or using `.env` file.
 
 #### Setup via environment variables
@@ -166,7 +166,7 @@ DB_ARGS=
 
 #### Import a SQL script via a Docker container
 
-The following Docker commands create a container to import a SQL script file to a specific database and remove the container afterward.
+The following Docker commands create a container to import an SQL script file to a specific database and remove the container afterward.
 
 **Note:** `mysql_importer` supports environment variables or a `.env` file passed as an argument.
 
