@@ -36,7 +36,7 @@ For more details check it out:
 
 ```sh
 docker run -it --rm joseluisq/alpine-mysql-client mysql --version
-# mysql  Ver 15.1 Distrib 10.6.4-MariaDB, for Linux (x86_64) using readline 5.1
+# mysql  Ver 15.1 Distrib 10.11.8-MariaDB, for Linux (x86_64) using readline 5.1
 ```
 
 ## User privileges

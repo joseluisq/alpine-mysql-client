@@ -1,16 +1,16 @@
-FROM --platform=$BUILDPLATFORM alpine:3.17.5 as build
+FROM --platform=$BUILDPLATFORM alpine:3.18.9 as build
 
 ARG TARGETPLATFORM
 ARG VERSION=0.0.0
 ENV VERSION=${VERSION}
-ARG ENVE_VERSION=1.4.1
+ARG ENVE_VERSION=1.5.1
 
 RUN apk --no-cache add ca-certificates tzdata
 RUN set -ex; \
     case "$TARGETPLATFORM" in \
         "linux/amd64") target='amd64' ;; \
         "linux/arm64") target='arm64' ;; \
-        "linux/386") target='i386' ;; \
+        "linux/386") target='386' ;; \
         "linux/arm/v7") target='armv7' ;; \
         "linux/arm/v6") target='armv6' ;; \
         *) echo >&2 "error: unsupported $TARGETPLATFORM architecture"; exit 1 ;; \
@@ -22,7 +22,7 @@ RUN set -ex; \
     chmod +x /usr/local/bin/enve; \
     true
 
-FROM alpine:3.17.5
+FROM alpine:3.18.9
 
 ARG VERSION=0.0.0
 ENV VERSION=${VERSION}
