@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM alpine:3.18.9 as build
+FROM --platform=$BUILDPLATFORM alpine:3.21.2 as build
 
 ARG TARGETPLATFORM
 ARG VERSION=0.0.0
@@ -22,13 +22,13 @@ RUN set -ex; \
     chmod +x /usr/local/bin/enve; \
     true
 
-FROM alpine:3.18.9
+FROM alpine:3.21.2
 
 ARG VERSION=0.0.0
 ENV VERSION=${VERSION}
 
 LABEL version="${VERSION}" \
-    description="MySQL client for easy export and import databases using Docker." \
+    description="MySQL client (mariadb-client) for easy export and import databases using Docker." \
     maintainer="Jose Quintana <joseluisq.net>"
 
 # Dependencies
@@ -79,7 +79,7 @@ CMD [ "mysql" ]
 # Metadata
 LABEL org.opencontainers.image.vendor="Jose Quintana" \
     org.opencontainers.image.url="https://github.com/joseluisq/alpine-mysql-client" \
-    org.opencontainers.image.title="Alpine / MySQL Client" \
-    org.opencontainers.image.description="MySQL client for easy export and import databases using Docker." \
+    org.opencontainers.image.title="Alpine / MySQL Client (mariadb-client)" \
+    org.opencontainers.image.description="MySQL client (mariadb-client) for easy export and import databases using Docker." \
     org.opencontainers.image.version="v${VERSION}" \
     org.opencontainers.image.documentation="https://github.com/joseluisq/alpine-mysql-client/blob/master/README.md"

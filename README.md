@@ -1,8 +1,8 @@
-# Alpine MySQL Client
+# Alpine MySQL Client (MariaDB Client)
 
 [![devel](https://github.com/joseluisq/alpine-mysql-client/actions/workflows/devel.yml/badge.svg)](https://github.com/joseluisq/alpine-mysql-client/actions/workflows/devel.yml) ![Docker Image Size](https://img.shields.io/docker/image-size/joseluisq/alpine-mysql-client/1) ![Docker Image Version](https://img.shields.io/docker/v/joseluisq/alpine-mysql-client/1) ![Docker Pulls](https://img.shields.io/docker/pulls/joseluisq/alpine-mysql-client.svg)
 
-> [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) (MariaDB Client) for easy **export** and **import** databases using Docker.
+> [MySQL client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) ([MariaDB Client](https://mariadb.com/kb/en/clients-utilities/)) for easy **export** and **import** databases using Docker.
 
 _**Note:** If you are looking for a **MySQL 8 Client** then go to [Docker MySQL 8 Client](https://github.com/joseluisq/docker-mysql-client) project._
 
@@ -10,33 +10,38 @@ _**Note:** If you are looking for a **MySQL 8 Client** then go to [Docker MySQL 
 
 ## MySQL Client programs
 
-**Note:** [MySQL client (mariadb-client)](https://pkgs.alpinelinux.org/package/v3.11/main/x86_64/mysql-client) is an alias package for [mysql-client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) migration tools.
+**Note:** [MySQL client (mariadb-client)](https://pkgs.alpinelinux.org/package/v3.21/main/x86_64/mysql-client) is an alias package for [mysql-client](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html) migration tools.
 
 ```sh
-mysql
-mysql_find_rows
-mysql_waitpid
-mysqladmin
-mysqldump
-mysqlimport
-mysql-export
+# Equivalent MySQL client tools
+mariadb
+mariadb-access
+mariadb-admin
+mariadb-check
+mariadb-dump
+mariadb-dumpslow
+mariadb-find-rows
+mariadb-import
+mariadb-secure-installation
+mariadb-show
+mariadb-waitpid
 mysql_fix_extensions
-mysqlaccess
-mysqlcheck
-mysqldumpslow
-mysqlshow
+
+# Tools provided by this image
+mysql_exporter
+mysql_importer
 ```
 
 For more details check it out:
 
-- [MariaDB 10 - Clients and Utilities](https://mariadb.com/kb/en/clients-utilities/)
+- [MariaDB 11 - Clients and Utilities](https://mariadb.com/kb/en/clients-utilities/)
 - [MySQL 8 - Client Programs](https://dev.mysql.com/doc/refman/8.0/en/programs-client.html)
 
 ## Usage
 
 ```sh
-docker run -it --rm joseluisq/alpine-mysql-client mysql --version
-# mysql  Ver 15.1 Distrib 10.11.8-MariaDB, for Linux (x86_64) using readline 5.1
+docker run -it --rm joseluisq/alpine-mysql-client mariadb --version
+# mariadb from 11.4.4-MariaDB, client 15.2 for Linux (x86_64) using readline 5.1
 ```
 
 ## User privileges
@@ -51,7 +56,7 @@ This image comes with some additional tools.
 
 ### Exporter
 
-`mysql_exporter` is a custom tool that exports a database script using `mysqldump`. Additionally, it supports gzip compression.
+`mysql_exporter` is a custom tool that exports a database script using `mariadb-dump` (a.k.a. `mysqldump`). Additionally, it supports gzip compression.
 It can be configured via environment variables or using `.env` file.
 
 #### Setup via environment variables
@@ -82,7 +87,7 @@ DB_ARGS=
 **Notes:**
 
 - `DB_EXPORT_GZIP=true`: Compress the SQL file using Gzip (optional). If `false` or not defined then the exported file will be a `.sql` file.
-- `DB_ARGS`: can be used to pass more `mysqldump` arguments (optional). 
+- `DB_ARGS`: can be used to pass more `mariadb-dump` (a.k.a. `mysqldump`) arguments (optional). 
 - A `.env` example file can be found at [./mysql_exporter.env](./mysql_exporter.env)
 
 #### Export a database using a Docker container
@@ -101,7 +106,7 @@ docker run --rm -it \
 
 # Alpine / MySQL Client - Exporter
 # ================================
-# mysqldump  Ver 10.17 Distrib 10.4.12-MariaDB, for Linux (x86_64)
+# mariadb-dump from 11.4.4-MariaDB, client 10.19 for Linux (x86_64)
 # Exporting database `mydb` into a SQL script file...
 # Output file: mydb.sql.gz (SQL GZipped)
 # Database `mydb` was exported on 0s successfully!
@@ -136,7 +141,7 @@ services:
 
 ### Importer
 
-`mysql_importer` is a custom tool that imports a SQL script file (text or Gzip) using `mysql` command.
+`mysql_importer` is a custom tool that imports a SQL script file (text or Gzip) using `mariadb` (a.k.a. `mysql`) command.
 It can be configured via environment variables or using `.env` file.
 
 #### Setup via environment variables
@@ -180,7 +185,7 @@ docker run --rm -it \
 
 # Alpine / MySQL Client - Importer
 # ================================
-# mysql  Ver 15.1 Distrib 10.4.12-MariaDB, for Linux (x86_64) using readline 5.1
+# mariadb from 11.4.4-MariaDB, client 15.2 for Linux (x86_64) using readline 5.1
 # Importing a SQL script file into database `dbtesting`...
 # Input file: mydb.sql.gz (10M / SQL GZipped)
 # Database `dbtesting` was imported on 1s successfully!
