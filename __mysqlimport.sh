@@ -13,10 +13,10 @@ XDB_IMPORT_GZIP="$DB_IMPORT_GZIP"
 XDB_IMPORT=
 
 # Required env variables
-if [[ -z "$DB_NAME" ]]; then "`DB_NAME` env variable is required."; exit 1; fi
-if [[ -z "$DB_USERNAME" ]]; then "`DB_USERNAME` env variable is required."; exit 1; fi
-if [[ -z "$DB_PASSWORD" ]]; then "`DB_PASSWORD` env variable is required."; exit 1; fi
-if [[ -z "$DB_IMPORT_FILE_PATH" ]]; then "`DB_IMPORT_FILE_PATH` env variable is required."; exit 1; fi
+if [[ -z "$DB_NAME" ]]; then echo "'DB_NAME' env variable is required."; exit 1; fi
+if [[ -z "$DB_USERNAME" ]]; then echo "'DB_USERNAME' env variable is required."; exit 1; fi
+if [[ -z "$DB_PASSWORD" ]]; then echo "'DB_PASSWORD' env variable is required."; exit 1; fi
+if [[ -z "$DB_IMPORT_FILE_PATH" ]]; then echo "'DB_IMPORT_FILE_PATH' env variable is required."; exit 1; fi
 
 # Optional env variables
 if [[ -z "$XDB_PROTO" ]]; then XDB_PROTO="tcp"; fi
@@ -41,14 +41,14 @@ CMD="\
 --password="\"$DB_PASSWORD"\" \
 $DB_ARGS $DB_NAME $XDB_IMPORT_FILE"
 
-echo "Alpine / MySQL Client - Importer"
+echo "Alpine / MariaDB Client - Importer"
 echo "================================"
 
-mysql --version
+mariadb --version
 
 FILE_SIZE=$(du -sh $DB_IMPORT_FILE_PATH | cut -f1)
 
-echo "Importing a SQL script file into database \`$DB_NAME\`..."
+echo "Importing a SQL script file into database '$DB_NAME'..."
 
 if [[ -n "$XDB_IMPORT_GZIP" ]] && [[ "$XDB_IMPORT_GZIP" = "true" ]]; then
     echo "Input file: $DB_IMPORT_FILE_PATH ($FILE_SIZE / SQL GZipped)"
@@ -56,9 +56,9 @@ else
     echo "Input file: $DB_IMPORT_FILE_PATH ($FILE_SIZE / SQL Text)"
 fi
 
-eval "${XDB_IMPORT}mysql ${CMD}"
+eval "${XDB_IMPORT}mariadb ${CMD}"
 
 END=`date +%s`
 RUNTIME=$((END-START))
 
-echo "Database \`$DB_NAME\` was imported on ${RUNTIME}s successfully!"
+echo "Database '$DB_NAME' was imported on ${RUNTIME}s successfully!"
