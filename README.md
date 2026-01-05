@@ -41,7 +41,7 @@ For more details check it out:
 
 ```sh
 docker run -it --rm joseluisq/alpine-mysql-client mariadb --version
-# mariadb from 11.4.4-MariaDB, client 15.2 for Linux (x86_64) using readline 5.1
+# mariadb from 11.4.8-MariaDB, client 15.2 for Linux (x86_64) using readline 5.1
 ```
 
 ## User privileges
@@ -106,7 +106,7 @@ docker run --rm -it \
 
 # Alpine / MySQL Client - Exporter
 # ================================
-# mariadb-dump from 11.4.4-MariaDB, client 10.19 for Linux (x86_64)
+# mariadb-dump from 11.4.8-MariaDB, client 10.19 for Linux (x86_64)
 # Exporting database `mydb` into a SQL script file...
 # Output file: mydb.sql.gz (SQL GZipped)
 # Database `mydb` was exported on 0s successfully!
@@ -185,7 +185,7 @@ docker run --rm -it \
 
 # Alpine / MySQL Client - Importer
 # ================================
-# mariadb from 11.4.4-MariaDB, client 15.2 for Linux (x86_64) using readline 5.1
+# mariadb from 11.4.8-MariaDB, client 15.2 for Linux (x86_64) using readline 5.1
 # Importing a SQL script file into database `dbtesting`...
 # Input file: mydb.sql.gz (10M / SQL GZipped)
 # Database `dbtesting` was imported on 1s successfully!

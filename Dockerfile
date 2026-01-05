@@ -1,9 +1,9 @@
-FROM --platform=$BUILDPLATFORM alpine:3.21.2 as build
+FROM --platform=$BUILDPLATFORM alpine:3.22.2 AS build
 
 ARG TARGETPLATFORM
 ARG VERSION=0.0.0
 ENV VERSION=${VERSION}
-ARG ENVE_VERSION=1.5.1
+ARG ENVE_VERSION=1.6.0
 
 RUN apk --no-cache add ca-certificates tzdata
 RUN set -ex; \
@@ -22,10 +22,12 @@ RUN set -ex; \
     chmod +x /usr/local/bin/enve; \
     true
 
-FROM alpine:3.21.2
+FROM alpine:3.22.2
 
 ARG VERSION=0.0.0
 ENV VERSION=${VERSION}
+ARG MYSQL_CLIENT_VERSION="11.4.8-r0"
+ENV MYSQL_CLIENT_VERSION=${MYSQL_CLIENT_VERSION}
 
 LABEL version="${VERSION}" \
     description="MySQL client (mariadb-client) for easy export and import databases using Docker." \
@@ -44,7 +46,12 @@ ENV USER_HOME_DIR=${USER_HOME_DIR:-/home/${USER_NAME}}
 
 RUN set -eux \
     && adduser -h ${USER_HOME_DIR} -s /sbin/nologin -u 1000 -D ${USER_NAME} \
-    && apk --no-cache add ca-certificates tzdata mysql-client nano dumb-init \
+    && apk --no-cache add \
+        ca-certificates \
+        tzdata \
+        mysql-client=${MYSQL_CLIENT_VERSION} \
+        nano \
+        dumb-init \
     && apk add --update $RUNTIME_DEPS \
     && apk add --virtual build_deps $BUILD_DEPS \
     && cp /usr/bin/envsubst /usr/local/bin/envsubst \
